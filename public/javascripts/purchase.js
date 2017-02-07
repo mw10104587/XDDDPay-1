@@ -63,6 +63,7 @@ function drawTable() {
     for (var i = 0; i < listCars.length; i++) {
         var obj = JSON.parse(listCars[i]);
         var row = tbl.insertRow(-1);
+        row.setAttribute("class", "car-row");
 
         //image
         var cell0 = row.insertCell(0);
@@ -76,9 +77,9 @@ function drawTable() {
         cell1.style.width = "60%";
         var t1 = document.createElement("span");
         var price = formatPrice(obj.price);
-        t1.innerHTML = "<h4>"+obj.name+"</br>" +
+        t1.innerHTML = "<h4 class='name'>"+obj.name+"</br>" +
             "<small>by "+obj.manu+"</small></h4>" +
-            "<h3>$ "+price[0]+"<small>"+price[1]+"</small></h3>";
+            "<h3 class='price'>$ "+price[0]+"<small>"+price[1]+"</small></h3>";
         cell1.appendChild(t1);
 
         //action
@@ -112,7 +113,20 @@ function commitPurchase() {
      * (Calculating the amount in the .js might not be a good idea)
      */
 
-     localStorage.setItem("stripe-amount", total);
-     window.location = "/pay"
+    // save the selected items as well...
+    const selectedRows = $("tr.car-row").filter( (a, o)=>($(o).find("input.btn")[0].value == "Remove") );
+
+    // an array that we'll have to store into Elephant database
+    const contents = Array.from(selectedRows).map( (o)=>{
+                      var name  = o.querySelector("h4.name").childNodes[0].textContent;
+                      var price = o.querySelector("h3.price").childNodes[0].textContent.replace(/[\$ ,]+/g, ""); 
+                      return {"name": name, "price": parseInt(price) };
+                    });
+
+    // console.log(contents);
+
+    localStorage.setItem("purchase-contents", JSON.stringify(contents) );
+    localStorage.setItem("stripe-amount", total);
+    window.location = "/pay"
 
 }

@@ -6,10 +6,10 @@ This is a modern as a service (COMS E6998) course at Columbia University. This a
 - use [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html) to serve our pages and server.
 
 
-## Packages and engines used
+## Packages, engines and Database
 1. [Express](http://expressjs.com), a node js web framework that works as the main url redirecting tool.
 2. [jade](), a template engine that makes writing html more elegant, but it's basically html, but less code.
-3. 
+3. [ElephantSQL](https://www.elephantsql.com/docs/index.html) a posgresql as a service
 
 
 ## Structure
@@ -22,3 +22,21 @@ This is a modern as a service (COMS E6998) course at Columbia University. This a
 
 ## How to setup this application
 MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK
+
+
+## ElephantSQL
+[Where to store database url information on Elastic Beanstalk?](https://alexdisler.com/2016/03/26/nodejs-environment-variables-elastic-beanstalk-aws/)
+```
+CREATE TABLE transaction(
+  uid char(16),
+  transaction_id int,
+  contents char(128),
+  timestamp bigint,
+  amount int,
+  PRIMARY KEY(uid, transaction_id)
+);
+
+INSERT INTO transaction (uid, transaction_id, contents, timestamp, amount) VALUES 
+('mw10104587', 00000001, '[{"name": "LaFerrari", "price": 1150000}, {"name": "Escalade ESV", "price": 76000}]', 1486451884, 1226000);
+
+```

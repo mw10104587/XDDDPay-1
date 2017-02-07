@@ -82,13 +82,17 @@ function stripeResponseHandler(status, response) {
     // Insert the amount to charge into the form so it gets submitted to the server:
     $form.append($('<input type="hidden" name="stripeAmount">').val(amount) );
 
+    // an array of what the user purchased is sent to the server as well
+    const c = localStorage.getItem('purchase-contents');
+    $form.append($('<input type="hidden" name="contents">').val( localStorage.getItem('purchase-contents') ));
+
     // Submit the form:
     // The submit from Stripe, but we want to make an ajax call here..
     // $form.get(0).submit(function(event){
     //   console.log('call back after submitting...');
     // });
 
-    $.post("/charge", {stripeToken: token, stripeAmount: amount}, function(data){
+    $.post("/charge", {stripeToken: token, stripeAmount: amount, contents: c}, function(data){
       console.log(data);
       console.log('got result from server...');
 

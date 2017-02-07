@@ -2,8 +2,12 @@
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 var express = require('express');
 var bodyParser = require('body-parser');
-
 var router = express.Router();
+
+// ElephantSQL database settings
+var pg = require('pg');
+var conString = process.env.ELEPHANTSQL_URL;
+var client = new pg.Client(conString);
 
 var stripe = require("stripe")("sk_test_e102x7xCt1rjXjLshrps2Huv");
 // var fs = require('fs');
@@ -11,13 +15,15 @@ var stripe = require("stripe")("sk_test_e102x7xCt1rjXjLshrps2Huv");
 
 router.post("/", function(req, res){
 
-	console.log('post request received...');
-
 	var token = req.body.stripeToken;
 	var amount = req.body.stripeAmount;
+	var uid = req.body.uid || "mw10104587";
+	var contents = req.body.contents;
+	var transaction_id = parseInt(Math.random() * 1000);
 
 	// Check the amount received.
 	console.log(`Amount: ${amount}`);
+	console.log(`contents: ${contents}`);
 
 	var ch = stripe.charges.create({
 	  amount: amount,
@@ -31,9 +37,32 @@ router.post("/", function(req, res){
 	  // console.log(charge);
 	  // console.log(err);
 
-	  // send a message back from here and save the record to our database
 	  if ( err === null ) {
-	  	res.send({state: "payment succeeded"});	
+
+	  	// send a message back from here and 
+	  	res.send({state: "payment succeeded"});
+
+	  	// save the record to our database
+	  	client.connect(function(err){
+			if(err) {
+				return console.error('could not connect to postgres', err);
+			}
+
+			const t = +new Date();
+			const q_front = 'INSERT INTO transaction (uid, transaction_id, contents, timestamp, amount) VALUES';
+			const q = `${q_front} ('${uid}', ${transaction_id}, '${contents}', ${t}, ${amount})`;
+			console.log(q);
+
+		  	client.query( q, function(err, result) {
+
+			    if(err) return console.error('error running query', err);
+				
+				console.log(result);
+				client.end();
+			});
+		})
+
+
 	  }
 	 
 
