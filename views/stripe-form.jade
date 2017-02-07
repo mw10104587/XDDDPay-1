@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  div.card-wrapper
+  div.form-wrapper
+    form#payment-form(action='', method='POST')
+      span.payment-errors
+      .form-row
+        label
+          span Card Number
+          input(type='text', size='20', data-stripe='number' id='number')
+      .form-row
+        label
+          span Expiration (MM/YY)
+          input(type='text', size='2', id='expiry')
+        input(type='text', size='2', data-stripe='exp_month', style='display:none;')
+        //- span / 
+        input(type='text', size='2', data-stripe='exp_year' style='display:none;')
+      .form-row
+        label
+          span CVC
+          input(type='text', size='4', data-stripe='cvc' id='cvc')
+      .form-row(style='display: none;')
+        label
+          span Name
+          input(type='text', size='2', id='name')
+      input.submit(type='submit', value='Submit Payment' class='btn btn-info')
+
+  link(href='stylesheets/stripe-form.css', rel='stylesheet')
+  link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js')
+  script(type='text/javascript', src='javascripts/card.js')
+  script(type='text/javascript', src='https://js.stripe.com/v2/')
+  script(type='text/javascript').
+    Stripe.setPublishableKey('pk_test_etBn8XZLMEGs11R5eau4i0gt');
+  script(type='text/javascript', src='javascripts/stripe-form.js')
