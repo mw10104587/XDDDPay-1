@@ -27,10 +27,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+// Should be updated with Joanna's login page
+// app.use('/', index);
+app.use('/', purchase);
+
 app.use('/users', users);
+
+// rendering html or jade static files
 app.use('/purchase', purchase);
 app.use('/pay', stripeForm);
+
+// server, no rendering
 app.use('/charge', charge);
 
 // catch 404 and forward to error handler

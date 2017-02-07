@@ -113,6 +113,6 @@ function commitPurchase() {
      */
 
      localStorage.setItem("stripe-amount", total);
-     window.location = "/checkout"
+     window.location = "/pay"
 
 }
