@@ -1,9 +1,10 @@
 # XDDD Pay
 This is a modern as a service (COMS E6998) course at Columbia University. This application gives us the oppurtunity to practice the implementation of the following features.
-- User log in and log out with JWT
+- User log in and log out with [JWT](https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens)
 - Implement basic shopping cart
 - Use stripe API
 - use [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html) to serve our pages and server.
+
 
 
 ## Packages, engines and Database
@@ -38,5 +39,20 @@ CREATE TABLE transaction(
 
 INSERT INTO transaction (uid, transaction_id, contents, timestamp, amount) VALUES 
 ('mw10104587', 00000001, '[{"name": "LaFerrari", "price": 1150000}, {"name": "Escalade ESV", "price": 76000}]', 1486451884, 1226000);
+```
 
+#### How to access our database?
+Enter the following code in the terminal
+```
+psql postgres://vbdwkdtg:4HumJWe1ZS_7aa1idrWSFFyMXnwHt4kb@babar.elephantsql.com:5432/vbdwkdtg
+```
+
+Check whether new row is in our only table
+```
+SELECT * FROM transaction;
+```
+
+and finally quit the session
+```
+\q
 ```
