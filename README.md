@@ -1,5 +1,11 @@
 # XDDD Pay
 Please visit our deployed application [here](http://flask-env.k2bwedhc5k.us-west-2.elasticbeanstalk.com/#/login).
+For better readability of this document, please visit our [github repo](https://github.com/mw10104587/XDDDPay/blob/master/README.md)
+
+# Team Name
+XDDDPay
+
+XDDD is sort of a smiling emoji that you'll have to see it by rotating your head.
 
 # Team Members
 | Name          | UNI           |
