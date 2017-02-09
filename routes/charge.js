@@ -12,7 +12,6 @@ var client = new pg.Client(conString);
 var stripe = require("stripe")("sk_test_e102x7xCt1rjXjLshrps2Huv");
 // var fs = require('fs');
 
-
 router.post("/", function(req, res){
 
 	var token = req.body.stripeToken;
@@ -40,7 +39,7 @@ router.post("/", function(req, res){
 	  if ( err === null ) {
 
 	  	// send a message back from here and 
-	  	res.send({state: "payment succeeded"});
+	  	res.send({state: "payment succeeded", conString: conString});
 
 	  	// save the record to our database
 	  	client.connect(function(err){

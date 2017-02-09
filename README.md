@@ -1,10 +1,21 @@
 # XDDD Pay
+Please visit our deployed application [here](http://flask-env.k2bwedhc5k.us-west-2.elasticbeanstalk.com/#/login).
+
+# Team Members
+| Name          | UNI           |
+| ------------- | ------------- |
+| Chi-An Wang   | cw2897        |
+| Xiyan Liu     | xl2672        |
+| Li-Chieh Liu  | ll3123        |
+| Ching-Hui Hsu | ch3230        |
+| Yi Qi         | yq2211        |
+
+
 This is a modern as a service (COMS E6998) course at Columbia University. This application gives us the oppurtunity to practice the implementation of the following features.
 - User log in and log out with [JWT](https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens)
 - Implement basic shopping cart
 - Use stripe API
 - use [Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html) to serve our pages and server.
-
 
 
 ## Packages, engines and Database
@@ -56,3 +67,21 @@ and finally quit the session
 ```
 \q
 ```
+
+
+
+
+# Problems Encountered until Feb.09
+### Multiple servers
+Due to miscommunication, we failed to have a consensus about what server we're going to work on. The first part of our application(log in) was implemented with flask(a Python framework), and the latter part was implemented using **node.js**.
+In order to redirect the user to the latter part, our temporary solution was to append the username at the end of the request url to the second server.
+
+### Failed to move **static files** from Elastic Beanstalk to S3.
+MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK 
+
+
+
+
+
+
+

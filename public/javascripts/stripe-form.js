@@ -84,6 +84,7 @@ function stripeResponseHandler(status, response) {
 
     // an array of what the user purchased is sent to the server as well
     const c = localStorage.getItem('purchase-contents');
+    
     $form.append($('<input type="hidden" name="contents">').val( localStorage.getItem('purchase-contents') ));
 
     // Submit the form:
