@@ -6,6 +6,7 @@ For better readability of this document, please visit our [github repo](https://
 XDDDPay
 
 XDDD is sort of a smiling emoji that you'll have to see it by rotating your head.
+![XDDD Face](public/images/XDDD.png)
 
 # Team Members
 | Name          | UNI           |
