@@ -2,6 +2,8 @@
 Please visit our deployed application [here](http://flask-env.k2bwedhc5k.us-west-2.elasticbeanstalk.com/#/login).
 For better readability of this document, please visit our [github repo](https://github.com/mw10104587/XDDDPay/blob/master/README.md)
 
+Another repo that saves the code that handles the login and logout of user accounts is [here](https://github.com/CHJoanna/Payment_webapp).
+
 # Team Name
 XDDDPay
 
@@ -76,8 +78,6 @@ and finally quit the session
 ```
 
 
-
-
 # Problems Encountered until Feb.09
 ### Multiple servers
 Due to miscommunication, we failed to have a consensus about what server we're going to work on. The first part of our application(log in) was implemented with flask(a Python framework), and the latter part was implemented using **node.js**.
@@ -87,7 +87,9 @@ In order to redirect the user to the latter part, our temporary solution was to 
 MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK MTK 
 
 
-
+# Future Works
+1. Merge two servers
+2. Move static files to S3.
 
 
 
