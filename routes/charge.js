@@ -2,6 +2,7 @@
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 var express = require('express');
 var bodyParser = require('body-parser');
+
 var router = express.Router();
 
 // ElephantSQL database settings
@@ -11,6 +12,7 @@ var client = new pg.Client(conString);
 
 var stripe = require("stripe")("sk_test_e102x7xCt1rjXjLshrps2Huv");
 // var fs = require('fs');
+
 
 router.post("/", function(req, res){
 
@@ -39,7 +41,7 @@ router.post("/", function(req, res){
 	  if ( err === null ) {
 
 	  	// send a message back from here and 
-	  	res.send({state: "payment succeeded", conString: conString});
+	  	res.send({state: "payment succeeded" /*, conString: conString*/ });
 
 	  	// save the record to our database
 	  	client.connect(function(err){
@@ -55,7 +57,6 @@ router.post("/", function(req, res){
 		  	client.query( q, function(err, result) {
 
 			    if(err) return console.error('error running query', err);
-				
 				console.log(result);
 				client.end();
 			});
@@ -68,6 +69,12 @@ router.post("/", function(req, res){
 	});
 
 
+});
+
+
+router.get("/confirmation", function(req, res){
+
+	res.sendfile('public/template/order-confirm.html');
 
 });
 

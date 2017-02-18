@@ -17,7 +17,11 @@
     <script type="text/javascript" src="javascripts/purchase.js"></script>
 </head>
 <body>
+    
+
     <div class="container" style="margin-top: 10px; margin-left: 40px; margin-right: 40px">
+        <h2>Please select your ideal carS, <span id='username'></span></h2>
+        <div style="height: 30px; width: 100%;"></div>
         <table id="carTbl" class="table table-hover"></table>
     </div>
 
@@ -36,6 +40,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
     crossorigin="anonymous"></script>
+
+
+    <!-- A temp script for demo... -->
+    <script type="text/javascript">
+        
+        // in this script we grab the username as if it is returned from the server... LOL
+        let params = window.location.search.substr(1).split("&");
+        params = params.reduce((agg, next)=>{
+            const kv = next.split("=");
+            agg[kv[0]] = kv[1];
+            return agg;
+        }, {});
+
+        const username = params["username"];
+
+        // show it in this page and set it in the local storage
+        document.getElementById("username").textContent = username;
+        localStorage.setItem("username", username);
+
+    </script>
 
 
 </body>

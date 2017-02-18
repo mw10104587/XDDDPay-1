@@ -30,7 +30,7 @@ This is a modern as a service (COMS E6998) course at Columbia University. This a
 ## Packages, engines and Database
 1. [Express](http://expressjs.com), a node js web framework that works as the main url redirecting tool.
 2. [jade](), a template engine that makes writing html more elegant, but it's basically html, but less code.
-3. [ElephantSQL](https://www.elephantsql.com/docs/index.html) a posgresql as a service
+3. [ElephantSQL](https://www.elephantsql.com/docs/index.html) a postgresql as a service
 
 
 ## Structure

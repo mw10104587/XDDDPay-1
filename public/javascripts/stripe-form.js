@@ -94,8 +94,11 @@ function stripeResponseHandler(status, response) {
     // });
 
     $.post("/charge", {stripeToken: token, stripeAmount: amount, contents: c}, function(data){
-      console.log(data);
-      console.log('got result from server...');
+      // console.log(data);
+      if ( data["state"] === "payment succeeded" ) {
+            window.location = "/charge/confirmation";    
+      }
+
 
     });
   }

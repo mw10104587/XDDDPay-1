@@ -106,7 +106,7 @@ function commitPurchase() {
         total += parseFloat(JSON.parse(listCars[i]).price) * listCart[i];
     }
 
-    console.log("Total amount: "+total);
+    console.log("Total amount: " + total);
 
     /*
      * Now need to save the chart data properly and redirect to payment service.
@@ -120,13 +120,14 @@ function commitPurchase() {
     const contents = Array.from(selectedRows).map( (o)=>{
                       var name  = o.querySelector("h4.name").childNodes[0].textContent;
                       var price = o.querySelector("h3.price").childNodes[0].textContent.replace(/[\$ ,]+/g, ""); 
-                      return {"name": name, "price": parseInt(price) };
+                      var imgName = o.querySelector("td>img").getAttribute("src");
+                      return {"name": name, "price": parseInt(price), "pic": imgName};
                     });
 
-    // console.log(contents);
+    console.log(contents);
 
     localStorage.setItem("purchase-contents", JSON.stringify(contents) );
     localStorage.setItem("stripe-amount", total);
-    window.location = "/pay"
+    window.location = "/pay";
 
 }

@@ -5,12 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var purchase = require('./routes/purchase');
 var stripeForm = require('./routes/stripeForm');
 var charge = require('./routes/charge');
+
+
+
 
 var app = express();
 
@@ -27,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Should be updated with Joanna's login page
 // app.use('/', index);
 app.use('/', purchase);
@@ -36,6 +41,8 @@ app.use('/users', users);
 // rendering html or jade static files
 app.use('/purchase', purchase);
 app.use('/pay', stripeForm);
+
+
 
 // server, no rendering
 app.use('/charge', charge);

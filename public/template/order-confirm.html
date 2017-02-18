@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OrderConfirmation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<style type="text/css"> 
+		body {background-image: url("../images/yellow.jpeg")}
+		td.headline {
+			text-align: center;
+			top: 150px;
+		}
+		p.general {
+			text-align: center;
+			font-size: 150%;
+		}
+
+		div#purchasedDetail{
+			padding-bottom: 50px;
+		}
+	</style>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+</head>
+<body>
+<script type="text/javascript">
+
+	if ( localStorage.getItem("purchase-contents") === undefined ) {
+		localStorage.setItem("purchase-contents", '[{"name":"McLaren P1","price": 866000, "pic": "../images/mcl-p1.png"},{"name":"R8 Coupé V10","price":162000, "pic" : "../images/audi-r8.png"}]');
+	}
+	
+</script>
+<div class="container" style='display: table; width: 100%;'>
+	<div id='smiling-image' style='float: left;'>
+		<img src="../images/xdddpay.jpg" class="img-circle" style='width: 300px;'>
+	</div>
+	<div id="text" style="float: right; top: 150px; position: relative;">
+		<h3>XDDDPay Order Confirmation</h3>	
+	</div>	
+</div>
+<div class="container">
+	<h3>Dear <span id="username"></span>:</h3>
+	<p class="general">Your trancation has been processed! Thanks for Shopping with us!</p>
+</div>
+
+<div id="purchasedDetail" class = "container">
+	<h4>Order Details</h4>
+	<table id="orderDetailTbl" class="table table-bordered"></table>
+	<div style="display: table;">
+		<span style="float: left; font-size: 30pt">Total: $ </span>
+		<span id = "totalamount" style="font-size: 30pt; style="float: right;""></span>
+	</div>
+</div>
+
+<script type="text/javascript">
+	drawTable();
+	document.getElementById("totalamount").innerHTML = calAmount() + ".00    YOU ARE SO RICH!";
+	// This is where you display table data by using the given key value pair in local storage
+
+	// $("#purchased-table").html('<div>HELLO</div>');
+	function drawTable() {
+		
+		var cars = JSON.parse(localStorage.getItem("purchase-contents"));
+		
+		// modify the path to images for cars in this file
+		cars.forEach((car)=>{
+			car["pic"] =  "../" + car["pic"];
+		});
+
+		console.log(cars);
+
+		var tbl = document.getElementById('orderDetailTbl');
+		for (var i = 0; i < cars.length; i++) {
+			var row = tbl.insertRow(i);
+
+			// image
+			var cell0 = row.insertCell(0);
+			cell0.style.width = "30";
+			var t0 = document.createElement("img");
+			t0.src = cars[i].pic;
+			cell0.appendChild(t0);
+			// name
+			var cell1 = row.insertCell(1);
+			cell1.style.width = "30%"; 
+			var t1 = document.createElement("span");
+			t1.innerHTML = "<h4>" + cars[i].name + "</h4>";
+			cell1.appendChild(t1);
+
+			// price 
+			var cell2 = row.insertCell(2);
+			cell2.style.width = "30%";
+			var t2 = document.createElement("span");
+			t2.innerHTML = "<h4>$ " + cars[i].price + ".00</h4>";
+			cell2.appendChild(t2);
+		}
+
+	}
+
+	function calAmount() {
+		var total = 0;
+		var cars = JSON.parse(localStorage.getItem("purchase-contents"));
+		for (var i = 0; i < cars.length; i++) {
+			total += cars[i].price;
+		}
+		return total;
+		// body...
+	}
+
+
+	document.getElementById("username").textContent = localStorage.getItem("username");
+
+
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</body>
+</html>
